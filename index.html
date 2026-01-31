@@ -51,9 +51,9 @@
             --space-md: 1rem;
             --space-lg: 1.5rem;
             --space-xl: 2rem;
-            --space-2xl: 3rem;
-            --space-3xl: 4rem;
-            --space-4xl: 6rem;
+            --space-2xl: 2.5rem;
+            --space-3xl: 3rem;
+            --space-4xl: 4rem;
 
             /* Layout */
             --container-max: 1200px;
@@ -1467,9 +1467,65 @@
 
         /* Hero Grid Responsive */
         @media (max-width: 1024px) {
+            :root {
+                --space-2xl: 2rem;
+                --space-3xl: 2.5rem;
+                --space-4xl: 3rem;
+            }
+
             .hero .container > div[style*="grid-template-columns"] {
                 grid-template-columns: 1fr !important;
-                gap: var(--space-2xl) !important;
+                gap: var(--space-xl) !important;
+                padding: var(--space-2xl) 0 !important;
+            }
+
+            .container {
+                padding: 0 var(--space-lg);
+            }
+
+            section {
+                padding: var(--space-3xl) 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --space-2xl: 1.5rem;
+                --space-3xl: 2rem;
+                --space-4xl: 2.5rem;
+            }
+
+            .hero .container > div[style*="grid-template-columns"] {
+                padding: var(--space-xl) 0 !important;
+            }
+
+            section {
+                padding: var(--space-2xl) 0;
+            }
+
+            #heroSlideshow {
+                height: 400px !important;
+            }
+
+            #heroSlideshow img {
+                height: 250px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --space-xl: 1.5rem;
+                --space-2xl: 1.5rem;
+                --space-3xl: 1.5rem;
+                --space-4xl: 2rem;
+            }
+
+            #heroSlideshow {
+                height: 350px !important;
+            }
+
+            #heroSlideshow img {
+                height: 200px !important;
             }
         }
     </style>
@@ -1883,10 +1939,10 @@
             <div class="faculty__scroll">
                 <div class="faculty-card">
                     <div class="faculty-card__photo">
-                        <span class="faculty-card__photo-initials">NT</span>
+                        <span class="faculty-card__photo-initials">JS</span>
                     </div>
                     <div class="faculty-card__info">
-                        <h3 class="faculty-card__name">Nori Tarui</h3>
+                        <h3 class="faculty-card__name">Jane Smith</h3>
                         <div class="faculty-card__title">Professor &amp; Chair</div>
                         <p class="faculty-card__field">Environmental &amp; Resource Economics, Game Theory</p>
                     </div>
@@ -1894,10 +1950,10 @@
 
                 <div class="faculty-card">
                     <div class="faculty-card__photo" style="background: linear-gradient(135deg, #1B6B93, #155A7A);">
-                        <span class="faculty-card__photo-initials">TH</span>
+                        <span class="faculty-card__photo-initials">RJ</span>
                     </div>
                     <div class="faculty-card__info">
-                        <h3 class="faculty-card__name">Timothy Halliday</h3>
+                        <h3 class="faculty-card__name">Robert Johnson</h3>
                         <div class="faculty-card__title">Professor</div>
                         <p class="faculty-card__field">Health Economics, Labor Economics, Applied Econometrics</p>
                     </div>
@@ -1905,10 +1961,10 @@
 
                 <div class="faculty-card">
                     <div class="faculty-card__photo" style="background: linear-gradient(135deg, #E07A5F, #C4603F);">
-                        <span class="faculty-card__photo-initials">MR</span>
+                        <span class="faculty-card__photo-initials">MC</span>
                     </div>
                     <div class="faculty-card__info">
-                        <h3 class="faculty-card__name">Michael Roberts</h3>
+                        <h3 class="faculty-card__name">Maria Chen</h3>
                         <div class="faculty-card__title">Professor</div>
                         <p class="faculty-card__field">Energy Economics, Environmental Economics, Applied Econometrics</p>
                     </div>
@@ -1916,23 +1972,23 @@
 
                 <div class="faculty-card">
                     <div class="faculty-card__photo" style="background: linear-gradient(135deg, #9A7F2E, #7A6420);">
-                        <span class="faculty-card__photo-initials">AG</span>
+                        <span class="faculty-card__photo-initials">DK</span>
                     </div>
                     <div class="faculty-card__info">
-                        <h3 class="faculty-card__name">Athanasios Geromichalos</h3>
-                        <div class="faculty-card__title">Professor</div>
+                        <h3 class="faculty-card__name">David Kim</h3>
+                        <div class="faculty-card__title">Associate Professor</div>
                         <p class="faculty-card__field">Monetary Economics, Search Theory, Financial Markets</p>
                     </div>
                 </div>
 
                 <div class="faculty-card">
                     <div class="faculty-card__photo" style="background: linear-gradient(135deg, #495057, #343A40);">
-                        <span class="faculty-card__photo-initials">RG</span>
+                        <span class="faculty-card__photo-initials">SP</span>
                     </div>
                     <div class="faculty-card__info">
-                        <h3 class="faculty-card__name">Ruben Gabrovski</h3>
+                        <h3 class="faculty-card__name">Sarah Patel</h3>
                         <div class="faculty-card__title">Assistant Professor</div>
-                        <p class="faculty-card__field">Macroeconomics, Search &amp; Matching, Housing Markets</p>
+                        <p class="faculty-card__field">Macroeconomics, Development Economics, International Trade</p>
                     </div>
                 </div>
             </div>
