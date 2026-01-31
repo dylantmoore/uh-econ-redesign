@@ -1,0 +1,2221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Economics | University of Hawai'i at Manoa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           CSS CUSTOM PROPERTIES
+           ============================================ */
+        :root {
+            /* UH Manoa brand colors */
+            --uhm-green: #024731;
+            --uhm-green-light: #036B3F;
+            --uhm-green-pale: #E8F5E9;
+            --uhm-gold: #C8A951;
+            --uhm-gold-light: #E8D999;
+            --uhm-gold-dark: #9A7F2E;
+
+            /* Neutrals */
+            --white: #FFFFFF;
+            --off-white: #FAFBFC;
+            --gray-50: #F8F9FA;
+            --gray-100: #F1F3F5;
+            --gray-200: #E9ECEF;
+            --gray-300: #DEE2E6;
+            --gray-400: #CED4DA;
+            --gray-500: #ADB5BD;
+            --gray-600: #868E96;
+            --gray-700: #495057;
+            --gray-800: #343A40;
+            --gray-900: #212529;
+
+            /* Accent */
+            --ocean-blue: #1B6B93;
+            --ocean-blue-light: #E3F2FD;
+            --coral: #E07A5F;
+            --coral-light: #FFF0EB;
+
+            /* Typography */
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'EB Garamond', Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+            --font-mono: 'EB Garamond', Georgia, serif;
+
+            /* Spacing scale */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --space-4xl: 6rem;
+
+            /* Layout */
+            --container-max: 1200px;
+            --container-narrow: 800px;
+            --nav-height: 72px;
+            --border-radius: 8px;
+            --border-radius-lg: 16px;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+            --shadow-xl: 0 24px 60px rgba(0,0,0,0.15);
+
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+            --transition-slow: 400ms ease;
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--gray-800);
+            line-height: 1.7;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: var(--uhm-green);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        a:hover {
+            color: var(--uhm-green-light);
+        }
+
+        ::selection {
+            background-color: var(--uhm-gold-light);
+            color: var(--uhm-green);
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+           ============================================ */
+        .container {
+            width: 100%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        .container--narrow {
+            max-width: var(--container-narrow);
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--uhm-gold-dark);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 2px;
+            background: var(--uhm-gold);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 700;
+            color: var(--uhm-green);
+            line-height: 1.2;
+            margin-bottom: var(--space-lg);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        /* ============================================
+           ANNOUNCEMENT BAR
+           ============================================ */
+        .announcement-bar {
+            background: var(--uhm-gold);
+            color: var(--uhm-green);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            padding: var(--space-sm) var(--space-md);
+            position: relative;
+            z-index: 100;
+        }
+
+        .announcement-bar a {
+            color: var(--uhm-green);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: 700;
+        }
+
+        .announcement-bar a:hover {
+            color: var(--gray-900);
+        }
+
+        .announcement-bar__close {
+            position: absolute;
+            right: var(--space-md);
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--uhm-green);
+            cursor: pointer;
+            font-size: 1.1rem;
+            opacity: 0.7;
+            transition: opacity var(--transition-fast);
+            line-height: 1;
+        }
+
+        .announcement-bar__close:hover {
+            opacity: 1;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            transition: box-shadow var(--transition-base);
+        }
+
+        .nav--scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--nav-height);
+        }
+
+        .nav__brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .nav__logo {
+            width: 44px;
+            height: 44px;
+            background: var(--uhm-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: -0.02em;
+        }
+
+        .nav__brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .nav__brand-dept {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--uhm-green);
+        }
+
+        .nav__brand-univ {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--gray-500);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            list-style: none;
+        }
+
+        .nav__link {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 6px;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .nav__link:hover {
+            color: var(--uhm-green);
+            background: var(--uhm-green-pale);
+        }
+
+        /* Dropdown */
+        .nav__item {
+            position: relative;
+        }
+
+        .nav__dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            padding: var(--space-sm);
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(-4px);
+            transition: all var(--transition-fast);
+            list-style: none;
+        }
+
+        .nav__item:hover .nav__dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav__dropdown-link {
+            display: block;
+            padding: var(--space-sm) var(--space-md);
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            border-radius: 6px;
+            transition: all var(--transition-fast);
+        }
+
+        .nav__dropdown-link:hover {
+            background: var(--uhm-green-pale);
+            color: var(--uhm-green);
+        }
+
+        .nav__cta {
+            background: var(--uhm-green);
+            color: var(--white) !important;
+            padding: var(--space-sm) var(--space-lg) !important;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all var(--transition-fast);
+            margin-left: var(--space-sm);
+        }
+
+        .nav__cta:hover {
+            background: var(--uhm-green-light);
+            color: var(--white) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(2,71,49,0.3);
+        }
+
+        /* Mobile nav toggle */
+        .nav__toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-sm);
+            color: var(--gray-700);
+        }
+
+        .nav__toggle svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--uhm-green) 0%, #013A28 60%, #012A1D 100%);
+            overflow: hidden;
+        }
+
+        .hero__pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.06;
+            background-image:
+                radial-gradient(circle at 25% 25%, var(--uhm-gold) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, var(--uhm-gold) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .hero__gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+        }
+
+        .hero__gradient-orb--1 {
+            width: 600px;
+            height: 600px;
+            background: var(--uhm-gold);
+            top: -200px;
+            right: -100px;
+        }
+
+        .hero__gradient-orb--2 {
+            width: 400px;
+            height: 400px;
+            background: var(--ocean-blue);
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            padding: var(--space-4xl) 0;
+        }
+
+        .hero__eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--uhm-gold);
+            margin-bottom: var(--space-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .hero__eyebrow::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--uhm-gold);
+        }
+
+        .hero__title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5.5vw, 4rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: var(--space-xl);
+            max-width: 700px;
+        }
+
+        .hero__title em {
+            font-style: normal;
+            color: var(--uhm-gold);
+        }
+
+        .hero__description {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.75);
+            max-width: 540px;
+            line-height: 1.8;
+            margin-bottom: var(--space-2xl);
+        }
+
+        .hero__actions {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 14px 28px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            text-decoration: none;
+            line-height: 1;
+        }
+
+        .btn--primary {
+            background: var(--uhm-gold);
+            color: var(--uhm-green);
+        }
+
+        .btn--primary:hover {
+            background: var(--uhm-gold-light);
+            color: var(--uhm-green);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(200,169,81,0.3);
+        }
+
+        .btn--outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn--outline:hover {
+            border-color: rgba(255,255,255,0.6);
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-2px);
+        }
+
+        .btn--green {
+            background: var(--uhm-green);
+            color: var(--white);
+        }
+
+        .btn--green:hover {
+            background: var(--uhm-green-light);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(2,71,49,0.25);
+        }
+
+        .btn--sm {
+            padding: 10px 20px;
+            font-size: 0.88rem;
+        }
+
+        .btn__arrow {
+            transition: transform var(--transition-fast);
+        }
+
+        .btn:hover .btn__arrow {
+            transform: translateX(3px);
+        }
+
+        .hero__stats {
+            display: flex;
+            gap: var(--space-3xl);
+            margin-top: var(--space-4xl);
+            padding-top: var(--space-2xl);
+            border-top: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .hero__stat {
+            text-align: left;
+        }
+
+        .hero__stat-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--uhm-gold);
+            line-height: 1;
+            margin-bottom: var(--space-xs);
+        }
+
+        .hero__stat-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ============================================
+           PROGRAMS SECTION
+           ============================================ */
+        .programs {
+            padding: var(--space-4xl) 0;
+            background: var(--off-white);
+        }
+
+        .programs__header {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+        }
+
+        .programs__header .section-label {
+            justify-content: center;
+        }
+
+        .programs__header .section-label::before {
+            display: none;
+        }
+
+        .programs__header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .programs__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+        }
+
+        .program-card {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-2xl);
+            transition: all var(--transition-base);
+            border: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--uhm-green);
+            transform: scaleX(0);
+            transition: transform var(--transition-base);
+            transform-origin: left;
+        }
+
+        .program-card:hover {
+            border-color: transparent;
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .program-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .program-card__icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-lg);
+            font-size: 1.5rem;
+        }
+
+        .program-card__icon--undergrad {
+            background: var(--uhm-green-pale);
+            color: var(--uhm-green);
+        }
+
+        .program-card__icon--masters {
+            background: var(--ocean-blue-light);
+            color: var(--ocean-blue);
+        }
+
+        .program-card__icon--phd {
+            background: var(--coral-light);
+            color: var(--coral);
+        }
+
+        .program-card__title {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-sm);
+        }
+
+        .program-card__degree {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: var(--space-md);
+        }
+
+        .program-card__desc {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: var(--space-lg);
+        }
+
+        .program-card__features {
+            list-style: none;
+            margin-bottom: var(--space-xl);
+        }
+
+        .program-card__features li {
+            font-size: 0.88rem;
+            color: var(--gray-700);
+            padding: var(--space-xs) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .program-card__features li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--uhm-gold);
+            flex-shrink: 0;
+        }
+
+        .program-card__link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--uhm-green);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            transition: gap var(--transition-fast);
+        }
+
+        .program-card__link:hover {
+            gap: var(--space-md);
+        }
+
+        /* ============================================
+           RESEARCH / PUBLICATIONS
+           ============================================ */
+        .research {
+            padding: var(--space-4xl) 0;
+        }
+
+        .research__layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3xl);
+            align-items: start;
+        }
+
+        .research__intro {
+            position: sticky;
+            top: calc(var(--nav-height) + var(--space-2xl));
+        }
+
+        .research__intro .section-title {
+            margin-bottom: var(--space-md);
+        }
+
+        .research__intro .section-subtitle {
+            margin-bottom: var(--space-xl);
+        }
+
+        .research__fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-xl);
+        }
+
+        .research__tag {
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: var(--gray-100);
+            color: var(--gray-700);
+            transition: all var(--transition-fast);
+        }
+
+        .research__tag:hover {
+            background: var(--uhm-green-pale);
+            color: var(--uhm-green);
+        }
+
+        .publication-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .publication {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius);
+            padding: var(--space-lg) var(--space-xl);
+            transition: all var(--transition-base);
+        }
+
+        .publication:hover {
+            border-color: var(--uhm-green-pale);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .publication__year {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--uhm-gold-dark);
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-xs);
+        }
+
+        .publication__title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--gray-900);
+            line-height: 1.5;
+            margin-bottom: var(--space-xs);
+        }
+
+        .publication__title a {
+            color: var(--gray-900);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .publication__title a:hover {
+            color: var(--uhm-green);
+        }
+
+        .publication__authors {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin-bottom: var(--space-xs);
+        }
+
+        .publication__journal {
+            font-size: 0.82rem;
+            font-style: italic;
+            color: var(--gray-500);
+        }
+
+        /* ============================================
+           SEMINARS SECTION
+           ============================================ */
+        .seminars {
+            padding: var(--space-4xl) 0;
+            background: var(--uhm-green);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .seminars__bg-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.04;
+            background-image:
+                linear-gradient(45deg, var(--uhm-gold) 25%, transparent 25%),
+                linear-gradient(-45deg, var(--uhm-gold) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, var(--uhm-gold) 75%),
+                linear-gradient(-45deg, transparent 75%, var(--uhm-gold) 75%);
+            background-size: 40px 40px;
+            background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+        }
+
+        .seminars .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .seminars .section-label {
+            color: var(--uhm-gold);
+        }
+
+        .seminars .section-label::before {
+            background: var(--uhm-gold);
+        }
+
+        .seminars .section-title {
+            color: var(--white);
+        }
+
+        .seminars .section-subtitle {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .seminars__header {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .seminars__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg);
+        }
+
+        .seminar-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-xl);
+            transition: all var(--transition-base);
+            text-decoration: none;
+            display: block;
+        }
+
+        .seminar-card:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        .seminar-card__day {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--uhm-gold);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-md);
+        }
+
+        .seminar-card__name {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: var(--space-md);
+        }
+
+        .seminar-card__desc {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+        }
+
+        .seminar-card__arrow {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-lg);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--uhm-gold);
+            transition: gap var(--transition-fast);
+        }
+
+        .seminar-card:hover .seminar-card__arrow {
+            gap: var(--space-md);
+        }
+
+        /* ============================================
+           FACULTY HIGHLIGHTS
+           ============================================ */
+        .faculty {
+            padding: var(--space-4xl) 0;
+            background: var(--off-white);
+        }
+
+        .faculty__header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: var(--space-2xl);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .faculty__scroll {
+            display: flex;
+            gap: var(--space-lg);
+            overflow-x: auto;
+            padding-bottom: var(--space-md);
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .faculty__scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .faculty-card {
+            flex: 0 0 280px;
+            scroll-snap-align: start;
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition-base);
+        }
+
+        .faculty-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .faculty-card__photo {
+            height: 200px;
+            background: linear-gradient(135deg, var(--uhm-green), var(--uhm-green-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .faculty-card__photo-initials {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: rgba(255,255,255,0.25);
+        }
+
+        .faculty-card__info {
+            padding: var(--space-lg);
+        }
+
+        .faculty-card__name {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--gray-900);
+            margin-bottom: var(--space-xs);
+        }
+
+        .faculty-card__title {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            font-weight: 500;
+            margin-bottom: var(--space-sm);
+        }
+
+        .faculty-card__field {
+            font-size: 0.82rem;
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        /* ============================================
+           STUDENT NOTICES / CTA
+           ============================================ */
+        .notices {
+            padding: var(--space-4xl) 0;
+        }
+
+        .notices__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+        }
+
+        .notice-card {
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-2xl);
+            display: flex;
+            flex-direction: column;
+            transition: all var(--transition-base);
+        }
+
+        .notice-card--waiver {
+            background: linear-gradient(135deg, var(--uhm-green) 0%, #036B3F 100%);
+            color: var(--white);
+        }
+
+        .notice-card--internship {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+        }
+
+        .notice-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .notice-card__badge {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-self: flex-start;
+            margin-bottom: var(--space-lg);
+        }
+
+        .notice-card--waiver .notice-card__badge {
+            background: rgba(200,169,81,0.2);
+            color: var(--uhm-gold);
+        }
+
+        .notice-card--internship .notice-card__badge {
+            background: var(--ocean-blue-light);
+            color: var(--ocean-blue);
+        }
+
+        .notice-card__title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: var(--space-md);
+        }
+
+        .notice-card--waiver .notice-card__title {
+            color: var(--white);
+        }
+
+        .notice-card--internship .notice-card__title {
+            color: var(--gray-900);
+        }
+
+        .notice-card__text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: var(--space-xl);
+            flex-grow: 1;
+        }
+
+        .notice-card--waiver .notice-card__text {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .notice-card--internship .notice-card__text {
+            color: var(--gray-600);
+        }
+
+        .notice-card__link {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            transition: gap var(--transition-fast);
+        }
+
+        .notice-card--waiver .notice-card__link {
+            color: var(--uhm-gold);
+        }
+
+        .notice-card--internship .notice-card__link {
+            color: var(--uhm-green);
+        }
+
+        .notice-card__link:hover {
+            gap: var(--space-md);
+        }
+
+        /* ============================================
+           QUICK LINKS / RESOURCES
+           ============================================ */
+        .resources {
+            padding: var(--space-3xl) 0;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .resources__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg);
+        }
+
+        .resource-card {
+            text-align: center;
+            padding: var(--space-xl);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition-base);
+            text-decoration: none;
+            display: block;
+        }
+
+        .resource-card:hover {
+            border-color: var(--uhm-green);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-2px);
+        }
+
+        .resource-card__icon {
+            font-size: 1.8rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .resource-card__title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--gray-900);
+            margin-bottom: var(--space-xs);
+        }
+
+        .resource-card__desc {
+            font-size: 0.82rem;
+            color: var(--gray-500);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--gray-900);
+            color: rgba(255,255,255,0.6);
+            padding: var(--space-3xl) 0 var(--space-xl);
+        }
+
+        .footer__top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+            padding-bottom: var(--space-2xl);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer__brand-text {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--space-md);
+        }
+
+        .footer__brand-desc {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin-bottom: var(--space-lg);
+            max-width: 340px;
+        }
+
+        .footer__social {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .footer__social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+            transition: all var(--transition-fast);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer__social-link:hover {
+            background: var(--uhm-green);
+            color: var(--white);
+        }
+
+        .footer__col-title {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer__links {
+            list-style: none;
+        }
+
+        .footer__links li {
+            margin-bottom: var(--space-sm);
+        }
+
+        .footer__links a {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.5);
+            transition: color var(--transition-fast);
+        }
+
+        .footer__links a:hover {
+            color: var(--uhm-gold);
+        }
+
+        .footer__bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.82rem;
+        }
+
+        .footer__bottom a {
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer__bottom a:hover {
+            color: var(--uhm-gold);
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-in:nth-child(2) { transition-delay: 0.1s; }
+        .animate-in:nth-child(3) { transition-delay: 0.2s; }
+        .animate-in:nth-child(4) { transition-delay: 0.3s; }
+
+        /* Hero animations */
+        .hero__eyebrow { animation: fadeInUp 0.8s ease 0.2s both; }
+        .hero__title { animation: fadeInUp 0.8s ease 0.35s both; }
+        .hero__description { animation: fadeInUp 0.8s ease 0.5s both; }
+        .hero__actions { animation: fadeInUp 0.8s ease 0.65s both; }
+        .hero__stats { animation: fadeInUp 0.8s ease 0.8s both; }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .programs__grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .research__layout {
+                grid-template-columns: 1fr;
+            }
+
+            .research__intro {
+                position: static;
+            }
+
+            .seminars__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer__top {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --nav-height: 64px;
+                --space-4xl: 4rem;
+            }
+
+            .nav__links {
+                display: none;
+                position: absolute;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: var(--space-md);
+                border-bottom: 1px solid var(--gray-200);
+                box-shadow: var(--shadow-lg);
+                align-items: stretch;
+            }
+
+            .nav__links.is-open {
+                display: flex;
+            }
+
+            .nav__item:hover .nav__dropdown {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                padding-left: var(--space-md);
+                background: var(--gray-50);
+                border-radius: var(--border-radius);
+            }
+
+            .nav__toggle {
+                display: block;
+            }
+
+            .nav__cta {
+                margin-left: 0;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: var(--space-3xl) 0;
+            }
+
+            .hero__stats {
+                flex-direction: column;
+                gap: var(--space-lg);
+            }
+
+            .programs__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .seminars__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .notices__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resources__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer__top {
+                grid-template-columns: 1fr;
+            }
+
+            .footer__bottom {
+                flex-direction: column;
+                gap: var(--space-sm);
+                text-align: center;
+            }
+
+            .faculty__header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .resources__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero__actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+        }
+
+        /* Hero Grid Responsive */
+        @media (max-width: 1024px) {
+            .hero .container > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                gap: var(--space-2xl) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         ANNOUNCEMENT BAR
+         ============================================= -->
+    <div class="announcement-bar" id="announcementBar">
+        Prospective Students: Graduate Programs <a href="#">Application Fee Waiver</a> now available
+        <button class="announcement-bar__close" onclick="document.getElementById('announcementBar').style.display='none'" aria-label="Close announcement">&times;</button>
+    </div>
+
+    <!-- =============================================
+         NAVIGATION
+         ============================================= -->
+    <nav class="nav" id="mainNav">
+        <div class="container nav__inner">
+            <a href="#" class="nav__brand">
+                <div class="nav__logo">
+                    <img src="https://www.economics.hawaii.edu/_New/Images/UH_Seal.png" alt="UH Manoa Seal" style="width: 40px; height: 40px;">
+                </div>
+                <div class="nav__brand-text">
+                    <span class="nav__brand-dept">Economics</span>
+                    <span class="nav__brand-univ">University of Hawai'i at Manoa</span>
+                </div>
+            </a>
+
+            <ul class="nav__links" id="navLinks">
+                <li class="nav__item">
+                    <a href="#" class="nav__link">About</a>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link">People</a>
+                    <ul class="nav__dropdown">
+                        <li><a href="#" class="nav__dropdown-link">Faculty</a></li>
+                        <li><a href="#" class="nav__dropdown-link">Graduate Affiliates</a></li>
+                        <li><a href="#" class="nav__dropdown-link">Emeritus</a></li>
+                        <li><a href="#" class="nav__dropdown-link">Graduate Students</a></li>
+                    </ul>
+                </li>
+                <li class="nav__item">
+                    <a href="#programs" class="nav__link">Programs</a>
+                    <ul class="nav__dropdown">
+                        <li><a href="#" class="nav__dropdown-link">Undergraduate</a></li>
+                        <li><a href="#" class="nav__dropdown-link">Master of Arts</a></li>
+                        <li><a href="#" class="nav__dropdown-link">Doctorate</a></li>
+                        <li><a href="#" class="nav__dropdown-link">BA-MA Combined Pathway</a></li>
+                    </ul>
+                </li>
+                <li class="nav__item">
+                    <a href="#research" class="nav__link">Research</a>
+                    <ul class="nav__dropdown">
+                        <li><a href="#" class="nav__dropdown-link">Working Papers</a></li>
+                        <li><a href="#" class="nav__dropdown-link">Publications</a></li>
+                        <li><a href="#seminars" class="nav__dropdown-link">Seminars</a></li>
+                    </ul>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link">Donate</a>
+                </li>
+                <li class="nav__item">
+                    <a href="#contact" class="nav__link nav__cta">Contact</a>
+                </li>
+            </ul>
+
+            <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         NOTICE BANNER
+         ============================================= -->
+    <div style="background: linear-gradient(135deg, #E3F2FD 0%, #FFF0EB 100%); padding: 1rem 0; border-bottom: 2px solid var(--ocean-blue);">
+        <div class="container" style="text-align: center;">
+            <p style="margin: 0; font-size: 0.95rem; color: var(--gray-800);">
+                <strong style="color: var(--ocean-blue);">📞 Contact:</strong> Call or email to schedule in-person meetings at the department office via <a href="tel:8089568496" style="color: var(--ocean-blue); text-decoration: underline;">(808) 956-8496</a> or email: <a href="mailto:econ@hawaii.edu" style="color: var(--ocean-blue); text-decoration: underline;">econ@hawaii.edu</a>
+            </p>
+        </div>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #FFF0EB 0%, #FFE8E0 100%); padding: 1.25rem 0; border-bottom: 2px solid var(--coral);">
+        <div class="container" style="text-align: center;">
+            <p style="margin: 0; font-size: 1.1rem; font-weight: 600;">
+                <a href="https://drive.google.com/file/d/1yoYt4YVIOBNSPYJPL7TlSFSZ8QOOSg3e/view?usp=sharing" target="_blank" style="color: #C4603F; text-decoration: none; border-bottom: 2px solid currentColor;">
+                    🎓 Attention Prospective Students: Economics Graduate Programs Application Fee Waiver
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <!-- =============================================
+         HERO
+         ============================================= -->
+    <section class="hero">
+        <div class="hero__pattern"></div>
+        <div class="hero__gradient-orb hero__gradient-orb--1"></div>
+        <div class="hero__gradient-orb hero__gradient-orb--2"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3xl); align-items: center; padding: var(--space-4xl) 0;">
+                <!-- Left: Text Content -->
+                <div class="hero__content">
+                    <div class="hero__eyebrow">College of Social Sciences</div>
+                    <h1 class="hero__title">
+                        Advancing Economic <em>Understanding</em> in the Pacific
+                    </h1>
+                    <p class="hero__description">
+                        The Department of Economics at UH Manoa offers rigorous undergraduate and graduate programs, with faculty conducting research at the frontiers of economic theory, policy, and applied analysis.
+                    </p>
+                    <div class="hero__actions">
+                        <a href="#programs" class="btn btn--primary">
+                            Explore Programs
+                            <span class="btn__arrow">&rarr;</span>
+                        </a>
+                        <a href="#research" class="btn btn--outline">
+                            View Research
+                        </a>
+                    </div>
+                    <div class="hero__stats">
+                        <div class="hero__stat">
+                            <div class="hero__stat-number">20+</div>
+                            <div class="hero__stat-label">Faculty Members</div>
+                        </div>
+                        <div class="hero__stat">
+                            <div class="hero__stat-number">3</div>
+                            <div class="hero__stat-label">Degree Programs</div>
+                        </div>
+                        <div class="hero__stat">
+                            <div class="hero__stat-number">4</div>
+                            <div class="hero__stat-label">Weekly Seminars</div>
+                        </div>
+                        <div class="hero__stat">
+                            <div class="hero__stat-number">50+</div>
+                            <div class="hero__stat-label">Years of Excellence</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Auto-rotating Slideshow -->
+                <div style="position: relative; border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: var(--shadow-xl); background: white;">
+                    <div id="heroSlideshow" style="position: relative; height: 500px;">
+                        <!-- Slide 1 -->
+                        <div class="hero-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 1; transition: opacity 1s ease-in-out;">
+                            <img src="https://www.economics.hawaii.edu/img_slideshow/picture3.jpg" alt="Economics Graduates" style="width: 100%; height: 350px; object-fit: cover; display: block;">
+                            <div style="padding: var(--space-lg); background: white;">
+                                <h3 style="font-family: var(--font-display); font-weight: 700; color: var(--uhm-green); margin-bottom: var(--space-sm); font-size: 1.5rem;">Celebrating Success</h3>
+                                <p style="color: var(--gray-700); margin: 0; line-height: 1.6;">Our graduates go on to distinguished careers in academia, government, and industry worldwide, applying rigorous economic analysis to real-world challenges.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="hero-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out;">
+                            <img src="https://www.economics.hawaii.edu/img_slideshow/picture2.jpg" alt="Hall Hall UH Manoa" style="width: 100%; height: 350px; object-fit: cover; display: block;">
+                            <div style="padding: var(--space-lg); background: white;">
+                                <h3 style="font-family: var(--font-display); font-weight: 700; color: var(--ocean-blue); margin-bottom: var(--space-sm); font-size: 1.5rem;">Beautiful Campus</h3>
+                                <p style="color: var(--gray-700); margin: 0; line-height: 1.6;">Located in the heart of Honolulu, our department provides an inspiring environment for learning and research in one of the world's most dynamic economic regions.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="hero-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out;">
+                            <img src="https://www.economics.hawaii.edu/img_slideshow/picture4.jpg" alt="Honolulu View" style="width: 100%; height: 350px; object-fit: cover; display: block;">
+                            <div style="padding: var(--space-lg); background: white;">
+                                <h3 style="font-family: var(--font-display); font-weight: 700; color: var(--coral); margin-bottom: var(--space-sm); font-size: 1.5rem;">Pacific Paradise</h3>
+                                <p style="color: var(--gray-700); margin: 0; line-height: 1.6;">Study economics while enjoying the natural beauty and unique culture of Hawaiʻi, where East meets West in a vibrant multicultural setting.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slideshow indicators -->
+                    <div style="position: absolute; bottom: 170px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px; z-index: 10;">
+                        <button onclick="setSlide(0)" class="slide-indicator" style="width: 10px; height: 10px; border-radius: 50%; border: 2px solid white; background: white; cursor: pointer; transition: all 0.3s;"></button>
+                        <button onclick="setSlide(1)" class="slide-indicator" style="width: 10px; height: 10px; border-radius: 50%; border: 2px solid white; background: transparent; cursor: pointer; transition: all 0.3s;"></button>
+                        <button onclick="setSlide(2)" class="slide-indicator" style="width: 10px; height: 10px; border-radius: 50%; border: 2px solid white; background: transparent; cursor: pointer; transition: all 0.3s;"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         PROGRAMS
+         ============================================= -->
+    <section class="programs" id="programs">
+        <div class="container">
+            <div class="programs__header">
+                <div class="section-label">Academic Programs</div>
+                <h2 class="section-title">Pathways to Your Future</h2>
+                <p class="section-subtitle">From foundational undergraduate studies to advanced doctoral research, our programs prepare students for impactful careers in economics, policy, and beyond.</p>
+            </div>
+
+            <div class="programs__grid">
+                <div class="program-card animate-in">
+                    <div class="program-card__icon program-card__icon--undergrad">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg>
+                    </div>
+                    <h3 class="program-card__title">Undergraduate</h3>
+                    <div class="program-card__degree">Bachelor of Arts in Economics</div>
+                    <p class="program-card__desc">Build a strong analytical foundation with coursework in microeconomics, macroeconomics, econometrics, and elective specializations.</p>
+                    <ul class="program-card__features">
+                        <li>Internship opportunities</li>
+                        <li>Exchange programs</li>
+                        <li>Research participation</li>
+                        <li>Scholarships available</li>
+                    </ul>
+                    <a href="#" class="program-card__link">
+                        Learn more <span>&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="program-card animate-in">
+                    <div class="program-card__icon program-card__icon--masters">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    </div>
+                    <h3 class="program-card__title">Master of Arts</h3>
+                    <div class="program-card__degree">M.A. in Economics</div>
+                    <p class="program-card__desc">Deepen your expertise with advanced coursework and applied research. Includes the accelerated BA-MA Combined Pathway for qualifying undergraduates.</p>
+                    <ul class="program-card__features">
+                        <li>BA-MA combined pathway</li>
+                        <li>Teaching assistantships</li>
+                        <li>Applied research focus</li>
+                        <li>Fee waiver available</li>
+                    </ul>
+                    <a href="#" class="program-card__link">
+                        Learn more <span>&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="program-card animate-in">
+                    <div class="program-card__icon program-card__icon--phd">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                    </div>
+                    <h3 class="program-card__title">Doctorate</h3>
+                    <div class="program-card__degree">Ph.D. in Economics</div>
+                    <p class="program-card__desc">Pursue original research under the guidance of internationally recognized faculty. Our graduates have secured positions at top institutions worldwide.</p>
+                    <ul class="program-card__features">
+                        <li>Full funding available</li>
+                        <li>Faculty mentorship</li>
+                        <li>Job market preparation</li>
+                        <li>Conference support</li>
+                    </ul>
+                    <a href="#" class="program-card__link">
+                        Learn more <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         RESEARCH & PUBLICATIONS
+         ============================================= -->
+    <section class="research" id="research">
+        <div class="container">
+            <div class="research__layout">
+                <div class="research__intro">
+                    <div class="section-label">Research</div>
+                    <h2 class="section-title">Recent Publications</h2>
+                    <p class="section-subtitle">Our faculty publish in leading economics journals, contributing to fields ranging from monetary theory to environmental policy.</p>
+
+                    <div class="research__fields">
+                        <span class="research__tag">Monetary Economics</span>
+                        <span class="research__tag">Environmental Policy</span>
+                        <span class="research__tag">Public Economics</span>
+                        <span class="research__tag">Microeconomic Theory</span>
+                        <span class="research__tag">Labor Economics</span>
+                        <span class="research__tag">Development Economics</span>
+                        <span class="research__tag">Energy Economics</span>
+                        <span class="research__tag">Housing Markets</span>
+                    </div>
+
+                    <a href="#" class="btn btn--green btn--sm">
+                        All Publications
+                        <span class="btn__arrow">&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="publication-list">
+                    <article class="publication animate-in">
+                        <div class="publication__year">December 2025</div>
+                        <h3 class="publication__title">
+                            <a href="#">For Better or Worse: Share Tenancy as Partnership</a>
+                        </h3>
+                        <p class="publication__authors">DeWeaver and Roumasset</p>
+                        <p class="publication__journal">Man and the Economy, 12(1)</p>
+                    </article>
+
+                    <article class="publication animate-in">
+                        <div class="publication__year">December 2025</div>
+                        <h3 class="publication__title">
+                            <a href="#">Credit Conditions, Inflation, and Unemployment</a>
+                        </h3>
+                        <p class="publication__authors">Gu, Jiang, and Wang</p>
+                        <p class="publication__journal">Journal of Economic Theory, 230</p>
+                    </article>
+
+                    <article class="publication animate-in">
+                        <div class="publication__year">April 2025</div>
+                        <h3 class="publication__title">
+                            <a href="#">The Real Effects of Financial Disruptions in a Monetary Economy</a>
+                        </h3>
+                        <p class="publication__authors">Gabrovski, Geromichalos, Herrenbrueck, Kospentaris, and Lee</p>
+                        <p class="publication__journal">Journal of Monetary Economics, 151</p>
+                    </article>
+
+                    <article class="publication animate-in">
+                        <div class="publication__year">January 2025</div>
+                        <h3 class="publication__title">
+                            <a href="#">Home Construction Financing and Search Frictions in the Housing Market</a>
+                        </h3>
+                        <p class="publication__authors">Gabrovski and Ortego-Marti</p>
+                        <p class="publication__journal">Review of Economic Dynamics, 55</p>
+                    </article>
+
+                    <article class="publication animate-in">
+                        <div class="publication__year">2024</div>
+                        <h3 class="publication__title">
+                            <a href="#">Real-Time Pricing and the Cost of Clean Power</a>
+                        </h3>
+                        <p class="publication__authors">Imelda, Fripp, and Roberts</p>
+                        <p class="publication__journal">American Economic Journal: Economic Policy, 16(4): 100-141</p>
+                    </article>
+
+                    <article class="publication animate-in">
+                        <div class="publication__year">October 2024</div>
+                        <h3 class="publication__title">
+                            <a href="#">Estimating Intergenerational Health Transmission in Taiwan with Administrative Health Records</a>
+                        </h3>
+                        <p class="publication__authors">Chang, Halliday, Lin, and Mazumder</p>
+                        <p class="publication__journal">Journal of Public Economics</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         SEMINARS
+         ============================================= -->
+    <section class="seminars" id="seminars">
+        <div class="seminars__bg-pattern"></div>
+        <div class="container">
+            <div class="seminars__header">
+                <div class="section-label">Weekly Series</div>
+                <h2 class="section-title">Seminars &amp; Workshops</h2>
+                <p class="section-subtitle">Join our active seminar series featuring presentations from faculty, graduate students, and visiting scholars.</p>
+            </div>
+
+            <div class="seminars__grid">
+                <a href="#" class="seminar-card animate-in">
+                    <div class="seminar-card__day">Varies</div>
+                    <h3 class="seminar-card__name">Departmental Seminar</h3>
+                    <p class="seminar-card__desc">General department seminars featuring diverse topics across all areas of economics.</p>
+                    <div class="seminar-card__arrow">
+                        View schedule <span>&rarr;</span>
+                    </div>
+                </a>
+
+                <a href="#" class="seminar-card animate-in">
+                    <div class="seminar-card__day">Mondays</div>
+                    <h3 class="seminar-card__name">Energy &amp; Environmental Research</h3>
+                    <p class="seminar-card__desc">Exploring energy markets, climate policy, and environmental economics.</p>
+                    <div class="seminar-card__arrow">
+                        View schedule <span>&rarr;</span>
+                    </div>
+                </a>
+
+                <a href="#" class="seminar-card animate-in">
+                    <div class="seminar-card__day">Tuesdays</div>
+                    <h3 class="seminar-card__name">Applied Microeconomics</h3>
+                    <p class="seminar-card__desc">Empirical research in labor, health, education, development, and public economics.</p>
+                    <div class="seminar-card__arrow">
+                        View schedule <span>&rarr;</span>
+                    </div>
+                </a>
+
+                <a href="#" class="seminar-card animate-in">
+                    <div class="seminar-card__day">Wednesdays</div>
+                    <h3 class="seminar-card__name">Microeconomics Theory</h3>
+                    <p class="seminar-card__desc">Cutting-edge research in game theory, mechanism design, and market microstructure.</p>
+                    <div class="seminar-card__arrow">
+                        View schedule <span>&rarr;</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FACULTY HIGHLIGHTS
+         ============================================= -->
+    <section class="faculty" id="faculty">
+        <div class="container">
+            <div class="faculty__header">
+                <div>
+                    <div class="section-label">Our People</div>
+                    <h2 class="section-title">Faculty Highlights</h2>
+                </div>
+                <a href="#" class="btn btn--green btn--sm" style="flex-shrink: 0;">
+                    View All Faculty <span class="btn__arrow">&rarr;</span>
+                </a>
+            </div>
+
+            <div class="faculty__scroll">
+                <div class="faculty-card">
+                    <div class="faculty-card__photo">
+                        <span class="faculty-card__photo-initials">NT</span>
+                    </div>
+                    <div class="faculty-card__info">
+                        <h3 class="faculty-card__name">Nori Tarui</h3>
+                        <div class="faculty-card__title">Professor &amp; Chair</div>
+                        <p class="faculty-card__field">Environmental &amp; Resource Economics, Game Theory</p>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-card__photo" style="background: linear-gradient(135deg, #1B6B93, #155A7A);">
+                        <span class="faculty-card__photo-initials">TH</span>
+                    </div>
+                    <div class="faculty-card__info">
+                        <h3 class="faculty-card__name">Timothy Halliday</h3>
+                        <div class="faculty-card__title">Professor</div>
+                        <p class="faculty-card__field">Health Economics, Labor Economics, Applied Econometrics</p>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-card__photo" style="background: linear-gradient(135deg, #E07A5F, #C4603F);">
+                        <span class="faculty-card__photo-initials">MR</span>
+                    </div>
+                    <div class="faculty-card__info">
+                        <h3 class="faculty-card__name">Michael Roberts</h3>
+                        <div class="faculty-card__title">Professor</div>
+                        <p class="faculty-card__field">Energy Economics, Environmental Economics, Applied Econometrics</p>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-card__photo" style="background: linear-gradient(135deg, #9A7F2E, #7A6420);">
+                        <span class="faculty-card__photo-initials">AG</span>
+                    </div>
+                    <div class="faculty-card__info">
+                        <h3 class="faculty-card__name">Athanasios Geromichalos</h3>
+                        <div class="faculty-card__title">Professor</div>
+                        <p class="faculty-card__field">Monetary Economics, Search Theory, Financial Markets</p>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-card__photo" style="background: linear-gradient(135deg, #495057, #343A40);">
+                        <span class="faculty-card__photo-initials">RG</span>
+                    </div>
+                    <div class="faculty-card__info">
+                        <h3 class="faculty-card__name">Ruben Gabrovski</h3>
+                        <div class="faculty-card__title">Assistant Professor</div>
+                        <p class="faculty-card__field">Macroeconomics, Search &amp; Matching, Housing Markets</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         STUDENT NOTICES
+         ============================================= -->
+    <section class="notices">
+        <div class="container">
+            <div class="notices__grid">
+                <div class="notice-card notice-card--waiver animate-in">
+                    <div class="notice-card__badge">Graduate Admissions</div>
+                    <h3 class="notice-card__title">Graduate Programs Application Fee Waiver</h3>
+                    <p class="notice-card__text">Prospective graduate students can apply to our M.A. and Ph.D. programs with a waived application fee. Take the first step toward advancing your economics education.</p>
+                    <a href="#" class="notice-card__link">
+                        Apply Now <span>&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="notice-card notice-card--internship animate-in">
+                    <div class="notice-card__badge">Opportunity</div>
+                    <h3 class="notice-card__title">Economics Major Featured for Entrepreneurial Internship</h3>
+                    <p class="notice-card__text">Gain real-world experience and build your professional network through entrepreneurial internship programs available to economics students.</p>
+                    <a href="#" class="notice-card__link">
+                        Learn More <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         QUICK RESOURCES
+         ============================================= -->
+    <section class="resources">
+        <div class="container">
+            <div class="resources__grid">
+                <a href="#" class="resource-card animate-in">
+                    <div class="resource-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--uhm-green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                    <div class="resource-card__title">Course Syllabi</div>
+                    <div class="resource-card__desc">Browse current syllabi for ECON courses</div>
+                </a>
+
+                <a href="#" class="resource-card animate-in">
+                    <div class="resource-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--ocean-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <div class="resource-card__title">Course Descriptions</div>
+                    <div class="resource-card__desc">Explore the full ECON course catalog</div>
+                </a>
+
+                <a href="#" class="resource-card animate-in">
+                    <div class="resource-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    </div>
+                    <div class="resource-card__title">Working Papers</div>
+                    <div class="resource-card__desc">Access working papers from our faculty</div>
+                </a>
+
+                <a href="#" class="resource-card animate-in">
+                    <div class="resource-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--uhm-gold-dark)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <div class="resource-card__title">Tutoring</div>
+                    <div class="resource-card__desc">Free peer tutoring for economics students</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer__top">
+                <div>
+                    <div class="footer__brand-text">Department of Economics</div>
+                    <p class="footer__brand-desc">
+                        University of Hawai'i at Manoa, College of Social Sciences. Advancing economic research and education in the heart of the Pacific.
+                    </p>
+                    <div class="footer__social">
+                        <a href="https://www.facebook.com/p/UH-Manoa-Economics-100063674435012/" class="footer__social-link" aria-label="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/uhm_econ/" class="footer__social-link" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
+                        <a href="https://twitter.com/uhm_econ" class="footer__social-link" aria-label="X (formerly Twitter)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer__col-title">Programs</h4>
+                    <ul class="footer__links">
+                        <li><a href="#">Undergraduate</a></li>
+                        <li><a href="#">Master of Arts</a></li>
+                        <li><a href="#">Doctorate</a></li>
+                        <li><a href="#">BA-MA Pathway</a></li>
+                        <li><a href="#">Scholarships</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer__col-title">Research</h4>
+                    <ul class="footer__links">
+                        <li><a href="#">Working Papers</a></li>
+                        <li><a href="#">Publications</a></li>
+                        <li><a href="#">Seminars</a></li>
+                        <li><a href="#">Job Market</a></li>
+                        <li><a href="#">UHERO</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer__col-title">Contact</h4>
+                    <ul class="footer__links">
+                        <li>Saunders Hall 542</li>
+                        <li>2424 Maile Way</li>
+                        <li>Honolulu, HI 96822</li>
+                        <li style="margin-top: 0.75rem;"><a href="tel:8089568496">(808) 956-8496</a></li>
+                        <li><a href="mailto:econ@hawaii.edu">econ@hawaii.edu</a></li>
+                        <li style="margin-top: 0.75rem;"><a href="mailto:adviecon@hawaii.edu">Undergrad Advising</a></li>
+                        <li><a href="mailto:econgap@hawaii.edu">Graduate Program</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <span>&copy; 2026 University of Hawai'i at Manoa. All rights reserved.</span>
+                <span>
+                    <a href="#">Privacy Policy</a> &middot;
+                    <a href="#">Accessibility</a> &middot;
+                    <a href="https://www.hawaii.edu">UH System</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =============================================
+         JAVASCRIPT
+         ============================================= -->
+    <script>
+        // ---- Mobile nav toggle ----
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('is-open');
+        });
+
+        // Close mobile nav when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('is-open');
+            });
+        });
+
+        // ---- Hero Slideshow ----
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const indicators = document.querySelectorAll('.slide-indicator');
+        let slideshowInterval;
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === index ? '1' : '0';
+            });
+
+            // Update indicators
+            indicators.forEach((indicator, i) => {
+                indicator.style.background = i === index ? 'white' : 'transparent';
+            });
+
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function setSlide(index) {
+            showSlide(index);
+            // Reset the interval when manually changing slides
+            clearInterval(slideshowInterval);
+            slideshowInterval = setInterval(nextSlide, 5000);
+        }
+
+        // Auto-advance slides every 5 seconds
+        slideshowInterval = setInterval(nextSlide, 5000);
+
+        // ---- Sticky nav shadow ----
+        const mainNav = document.getElementById('mainNav');
+        let lastScrollY = 0;
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            if (scrollY > 10) {
+                mainNav.classList.add('nav--scrolled');
+            } else {
+                mainNav.classList.remove('nav--scrolled');
+            }
+            lastScrollY = scrollY;
+        }, { passive: true });
+
+        // ---- Intersection Observer for animations ----
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ---- Smooth scroll for anchor links ----
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offset = mainNav.offsetHeight + 16;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ---- Counter animation for hero stats ----
+        function animateCounter(el, target, suffix) {
+            let current = 0;
+            const step = Math.max(1, Math.floor(target / 40));
+            const interval = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(interval);
+                }
+                el.textContent = current + suffix;
+            }, 30);
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statEls = entry.target.querySelectorAll('.hero__stat-number');
+                    statEls.forEach(el => {
+                        const text = el.textContent;
+                        const num = parseInt(text);
+                        const suffix = text.replace(num.toString(), '');
+                        if (!isNaN(num)) {
+                            animateCounter(el, num, suffix);
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const heroStats = document.querySelector('.hero__stats');
+        if (heroStats) {
+            statsObserver.observe(heroStats);
+        }
+    </script>
+
+</body>
+</html>
